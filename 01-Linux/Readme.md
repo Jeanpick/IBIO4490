@@ -208,3 +208,26 @@ http://www.ee.surrey.ac.uk/Teaching/Unix/
 
 
 
+
+Informe 1.
+Respuestas:
+
+1.	El comando grep busca un archivo o grupo de archivos dada una característica especificada. Normalmente este tipo de comando se restringe a caracteres de tipo string. También se pueden realizar diferentes operaciones que permitan encontrar varias inclusiones.
+2.	Cuando aparece #!/bin/Python, significa que todo el script que se está implementando en el momento está especificado como un lenguaje Python. Esto se debe a que siempre debe documentarse el tipo de lenguaje a usar para los diferentes programas en los scripts usados en terminales. 
+3.	Se descargó la base de datos de Berkeley con el comando wget y la dirección URL de la base. Este fue el URL utilizado: http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz
+4.	Para poder obtener información de cierto directorio y sus archivos se puede usar el comando ls. Este permite visualizar los archivos en un directorio específico. Con -1, se pueden organizar los archivos en formato de filas. Consecuentemente wc puede contar palabras en un directorio, más aún con wc –l se pueden contar líneas. De este modo el comando completo ls -1 | wc-l permite contar el número de archivos en un directorio. En total la carpeta de imágenes tiene un total de 503 imágenes distribuidas en entrenamiento, evaluación y validación. También se puede obtener información del uso de espacio por parte de un directorio. Para eso se usa du (disk usage). Por eso con el comando du, se puede llegar a que la carpeta descomprimida tiene un tamaño de 37.852 MB.
+5.	Para poder hallar la resolución que tiene una imagen se puede usar el comando find, con las características –name, que obvia el nombre de los archivos, y –exec, que permite usar la extensión de imagemagick. A esto se le aplica identity {}, que permite conocer un listado de las propiedades de cada imagen. A esto se le adicionan los comando sort y uniq, de forma que identifique solo un tipo de formato (uniq) y lo ordene (sort). En general identify (implementando sort) reconoce de segundo puesto el formato y de tercer puesto la resolución en el listado. Aquí se usa awk para que imprima las posiciones 2 y 3. 
+6. 	En el lenguaje bash se pueden incluir métodos para reconocer la resolución de una imagen, como ya se había propuesto en el punto 5. Esta resolución otorga mucha información de la orientación de la imagen, de modo que se puede saber si esta se encuentra en formato horizontal o vertical, de pendiendo si es más alta que ancha. Asímismo se puede identificar el número de pixeles que toma la altura de la imagen usando el comando awk '{print $3}' que retorna el tercer campo de las propiedades de identify image. Finalmente para poder obtener el número adecuado se usa cut 1,2,3 para obtener los primeros tres dígitos del proceso.
+7. 	La herramienta ImageMagick permite realizar operaciones sobre las imágenes. Una de estas operaciones es el recorte de las mismas. Para ello se usa el comando magick -crop, que crea una copia recortada a cierta resolución. Usando el comando '*.jpg', se puede generalizar el proceso para varias imágenes en una sola carpeta y se les asigna un nombre diferente a cada una dependiendo del orden usando %03d.jpg con un sufijo predeterminado si se desea. Así se pueden obtener las imágenes recortadas de forma cuadrada.
+
+
+
+
+
+
+Referencias
+https://help.ubuntu.com/community/find
+http://www.upubuntu.com/2012/02/how-to-check-image-resolution-using.html
+http://tldp.org/HOWTO/Bash-Prompt-HOWTO/x700.html
+https://www.cyberciti.biz/faq/howto-use-grep-command-in-linux-unix/
+http://www.imagemagick.org/script/command-line-processing.php
