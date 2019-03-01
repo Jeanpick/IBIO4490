@@ -1,11 +1,7 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Feb 14 11:04:21 2019
-
-@author: Juan David Triana
-"""
-
 #!/usr/bin/python
+
+
+
 
 import numpy as np
 from PIL import Image, ImageDraw
@@ -28,8 +24,6 @@ if os.path.exists(os.getcwd() + '/' + 'CG.zip')==False:
     sg_b = request.urlopen(sg_url)
     cg_b = request.urlopen(cg_url)
 
-#Lee los archivos .zip y luego los almacena en archivos .zip idénticos en
-#el directorio de trabajo.
     sg_data = sg_b.read()
     cg_data = cg_b.read()
 
@@ -41,8 +35,7 @@ if os.path.exists(os.getcwd() + '/' + 'CG.zip')==False:
     file_c.write(sg_data)
     file_c.close()
 
-#Se descomprimeen los archivos en cuestión, creando dos directorios con la base
-#de datos.
+
     zip_sg = zipfile.ZipFile(os.getcwd() + '/'+'SG.zip','r')
     zip_sg.extractall()
     zip_sg.close()
@@ -51,12 +44,12 @@ if os.path.exists(os.getcwd() + '/' + 'CG.zip')==False:
     zip_cg.extractall()
     zip_cg.close()
 
-#Crea dos carpetas una para cada clase de imágenes.
+
 if os.path.exists(os.getcwd()+'/'+'new_Base')==False:
     os.mkdir(os.getcwd()+'/'+'new_Base')
 
 
-#Crea un número aleatorio entre 6 y 16.
+
 X = random.randint(3,5)
 Y = random.randint(3,5)
 #Recorridos donde se observan los directorios en los cuales se encuentran las
@@ -79,7 +72,7 @@ for k in list(range(0,Y)):
     sg_Im_resize = sg_Io.resize(size=(256,256))
     sg_Im_resize.save(os.getcwd()+'/'+'new_Base'+'/'+'S_'+str(k)+'.png',)
 
-#Se crea una figura con todas las imágenes encontradas con su respectivo tag. 
+ 
 fig=plt.figure()    
 lista_f = os.listdir(os.getcwd()+'/'+'new_Base')
 for j in list(range(1,X*Y))    :
@@ -96,7 +89,7 @@ toc = time.time()
 print('El tiempo transcurrido es: '+ str(toc-tic) +' segundos.')
 
 
-#Bibliografía
+
 #https://pillow.readthedocs.io/en/3.1.x/reference/Image.html
 #https://pillow.readthedocs.io/en/3.0.x/reference/ImageDraw.html
 #https://docs.python.org/2/library/os.path.html#module-os.path
