@@ -118,7 +118,6 @@ print ('El ACA es: ',ACA)
 np.set_printoptions(precision=2)
 
 i=0
-print('Matriz de confusion para K=', kt[i])
 # Plot non-normalized confusion matrix
 plt.figure()
 plot_confusion_matrix(cnf_matrix, classes = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"],
@@ -131,9 +130,3 @@ b=plot_confusion_matrix(cnf_matrix, normalize=True, classes = ["airplane", "auto
 plt.show()
 i=i+1
 
-plt.figure()
-plt.bar(kt,presicion)
-plt.xlabel('Number of Clusters (k)')
-plt.ylabel('Accuracy of prediction')
-plt.title('Accuracy vs Number of Clusters (k)')
-plt.show()
