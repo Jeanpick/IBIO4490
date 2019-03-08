@@ -9,7 +9,7 @@ def groundtruth(img_file):
     import scipy.io as sio
     img = imageio.imread(img_file)
     gt=sio.loadmat(img_file.replace('jpg', 'mat'))
-    segm=gt['groundTruth'][0,5][0][0]['Segmentation']
+    segm=gt['groundTruth'][0,4][0][0]['Segmentation']
     imshow(img, segm, title='Groundtruth')
 
 def imshow(img, seg, title='Image'):
@@ -24,7 +24,7 @@ def imshow(img, seg, title='Image'):
 #
 def check_dataset(folder):
     import os
-    from urllib import request
+    #from urllib import request
     import zipfile
     if not os.path.isdir(folder):
         # Download it.
@@ -44,6 +44,7 @@ if __name__ == '__main__':
     import argparse
     import imageio
     import time
+    from segment import segmentByClustering
     #import segmentByClustering
     parser = argparse.ArgumentParser()
     now = time.time()
@@ -51,12 +52,12 @@ if __name__ == '__main__':
     #Numero de clusters
     k=9
     
-    #Inicialización parámetros en la terminal
+    #Inicializacion parametros en la terminal
     parser.add_argument('--color', type=str, default='rgb', choices=['rgb', 'lab', 'hsv', 'rgb+xy', 'lab+xy', 'hsv+xy']) # If you use more please add them to this list.
     parser.add_argument('--k', type=int, default=4)
     parser.add_argument('--method', type=str, default='watershed', choices=['kmeans', 'gmm', 'hierarchical', 'watershed'])
     parser.add_argument('--img_file', type=str, required=True)
-    #Funciones que sacan la segmentación de las imagenes. 
+    #Funciones que sacan la segmentacion de las imagenes. 
     
     #Observaciones:
     #Para kmeans k funciona bien entre: 7-10
@@ -65,12 +66,13 @@ if __name__ == '__main__':
     #Para hierarchical k funciona bien en 20
     
     opts = parser.parse_args()
-    check_dataset(opts.img_file.split('/'))
+    #check_dataset(opts.img_file.split('/'))
     
-    img = imageio.imread(opts.img_file)
-    seg = segmentByClustering(image=img, mode=opts.color, method=opts.method, k=opts.k)
+    
+    seg = segmentByClustering(image=opts.img_file, mode=opts.color, method=opts.method, k=opts.k)
+    img=imageio.imread(opts.img_file)
 
     groundtruth(opts.img_file)
-    
+    imshow(img,seg)
     Tiempo1 = time.time() - now
-    print 'El tiempo total de ejecucion fue:', Tiempo1
+    print ('El tiempo total de ejecucion fue:', Tiempo1)
