@@ -22,7 +22,10 @@ _data/
 *
 clone/
 html/
+_html/
+www
 08-PHOW/data
 vlfeat
 */matlab/data
 */python/data
+*.csv
