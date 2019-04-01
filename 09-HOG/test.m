@@ -1,8 +1,8 @@
 
 addpath code
 addpath images
-run('code/vlfeat-0.9.21/toolbox/vl_setup')
-test_scn_path = 'data/test_scenes/test_jpg/';
+%run('code/vlfeat-0.9.21/toolbox/vl_setup')
+test_scn_path = 'images/test_scenes/test_jpg/';
 feature_params = struct('template_size', 36, 'hog_cell_size', 6);
 load('w.mat')
 load('b.mat')
