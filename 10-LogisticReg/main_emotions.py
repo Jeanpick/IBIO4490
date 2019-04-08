@@ -189,7 +189,7 @@ def demo():
     predictions = []
     
     #Load images and reshape in grayscale format
-    wild_path = os.getcwd()+'/wild_images/'
+    wild_path = os.getcwd()+'/images/'
     path_list = os.listdir(wild_path)
     annotations = [1,1,1,0,0,0]
     for i in range(len(path_list)):

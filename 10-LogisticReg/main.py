@@ -158,7 +158,7 @@ def demo():
     model.b = model_p['b']
     predictions = []
 
-    wild_path = os.getcwd()+'/wild_images/'
+    wild_path = os.getcwd()+'/images/'
     path_list = os.listdir(wild_path)
     annotations = [1,1,1,0,0,0]
     for i in range(len(path_list)):
